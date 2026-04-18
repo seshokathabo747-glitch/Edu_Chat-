@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Group Chat</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>Group Chat 💬</h2>
+
+<div id="chat" class="chat-box"></div>
+
+<input id="msg" placeholder="Message">
+<button onclick="sendGroup()">Send</button>
+
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+
+<script src="app.js"></script>
+
+<script>
+db.ref("groupChat").on("child_added", snap=>{
+  let m = snap.val();
+
+  let div = document.createElement("div");
+  div.innerHTML = `<b>${m.name}</b>: ${m.text}`;
+  document.getElementById("chat").appendChild(div);
+});
+</script>
+
+</body>
+</html>
